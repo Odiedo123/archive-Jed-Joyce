@@ -40,13 +40,14 @@ def validate_id(value):
 
 
 def validate_title(value):
-    """A title must be present and at least 3 characters once stripped.
+    value = value.strip()
+    statement = True
+    s = ""
+    if len(value) < 3:
+        s = "A title must be present and at least 3 characters once stripped"
+        statement = False
 
-    Valid:   "Tarikh al-Sudan"
-    Invalid: "", "   ", "Ab"
-
-    Returns (bool, str).
-    """
+    return statement,s
     raise NotImplementedError("validate_title")
 
 
