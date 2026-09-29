@@ -61,7 +61,7 @@
 | Test data | Value | Expected | Actual | Pass? |
 | --- | --- | --- | --- | --- |
 | Normal | 1655 | valid |  |  |
-| Abnormal   |  |  |  |  |
+| Abnormal |  |  |  |  |
 | Extreme (low) | 1100 | valid |  |  |
 | Extreme (high) |  |  |  |  |
 | Boundary (below) | 1099 | invalid |  |  |
@@ -100,8 +100,9 @@
 
 ```bash
 pytest -v                              # all tests
-pytest tests/test_provided.py -v       # the given suite (if this does not work, try below command)
-python -m pytest tests/test_provided.py -v # the given suite
+pytest tests/test_provided.py -v       # the given suite
 pytest tests/test_yours.py -v          # your suite
 python tools/check_collaboration.py    # your Part C report
 ```
+
+[Link to the submission form](https://docs.google.com/forms/d/e/1FAIpQLSdO4trwNU4zPusr33LfYRhH2jvijj7sY42svbumH6f_15rCAQ/viewform?usp=preview)
