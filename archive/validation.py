@@ -27,23 +27,13 @@ VALID_CONDITIONS = ["fragile", "fair", "good"]
 MIN_YEAR = 1100
 MAX_YEAR = 1900
 
-
 def validate_id(value):
-   idnum = False
-   error = ""
-   if len(id)==5 :
-       if id[0]== "M" and id[1]== "S":
-           for i in range (3, len(id)):
-               if id(2).int()==True and id(3).int()==True and id(4).int()==True:
-                   idnum = True
-               else:
-                   error = " not valid"
-       else:
-           error = "not valid"
-   else:
-        error = "not in range"
-   return (idnum, error)
-
+    if not isinstance(value, str) or len(value) != 5:
+        return (False, "not in range")
+    if value.startswith("MS") and value[2:].isdigit():
+        return (True, "")
+    else:
+        return (False, "not valid")
 
 
 def validate_title(value):
