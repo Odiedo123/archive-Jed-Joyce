@@ -29,15 +29,21 @@ MAX_YEAR = 1900
 
 
 def validate_id(value):
-    """An ID is the letters 'MS' followed by exactly three digits.
+   idnum = False
+   error = ""
+   if len(id)==5 :
+       if id[0]== "M" and id[1]== "S":
+           for i in range (3, len(id)):
+               if id(2).int()==True and id(3).int()==True and id(4).int()==True:
+                   idnum = True
+               else:
+                   error = " not valid"
+       else:
+           error = "not valid"
+   else:
+        error = "not in range"
+   return (idnum, error)
 
-    Valid:   "MS001", "MS742"
-    Invalid: "MS1", "MS0012", "ms001", "XX001", "", "MS00A"
-
-    Returns (bool, str).
-    """
-    h
-    raise NotImplementedError("validate_id")
 
 
 def validate_title(value):
@@ -62,31 +68,29 @@ def validate_city(value):
     """
     raise NotImplementedError("validate_city")
 
-
 def validate_year(value):
-    """A year must be present, numeric, and between MIN_YEAR and MAX_YEAR
-    INCLUSIVE.
-
-    Valid:   "1655", "1100", "1900"
-    Invalid: "", "   ", "c.1590", "sixteen fifty", "1099", "1901", "2087"
-
-    Note that "2087" parses perfectly well as a number. It is still wrong.
-    That is the whole point of a range check.
-
-    Returns (bool, str).
-    """
-    raise NotImplementedError("validate_year")
+    if not isinstance(value, str) or len(value) != 4 or not value.isdigit():
+        if isinstance(value, str) and not value.isdigit():
+            return (False, "year should be integers")
+        return (False, "invalid year")
+    year = int(value)
+    if 1100 <= year <= 1900:
+        return (True, "")
+    else:
+        return (False, "not in range")
 
 
 def validate_condition(value):
-    """A condition must be one of VALID_CONDITIONS, case-insensitively.
+    if not isinstance(value, str):
+        return (False, "a condition is either fragile, good or fair")
+        
+    valid_conditions = ("fragile", "good", "fair")
+    
+    if value.lower() in valid_conditions:
+        return (True, "")
+    else:
+        return (False, "a condition is either fragile, good or fair")
 
-    Valid:   "fragile", "GOOD", "Fair"
-    Invalid: "excellent", "", "ok"
-
-    Returns (bool, str).
-    """
-    raise NotImplementedError("validate_condition")
 
 
 def validate_record(record):
