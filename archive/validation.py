@@ -18,7 +18,7 @@ The year range is INCLUSIVE at both ends: 1100 and 1900 are VALID.
 1099 and 1901 are not. Most marks lost in Part A are lost on that line.
 """
 
-from archive.errors import MalformedRecordError  # noqa: F401  (you may not need it here)
+#from archive.errors import MalformedRecordError  # noqa: F401  (you may not need it here)
 
 KNOWN_CITIES = ["Timbuktu", "Djenne", "Gao", "Walata", "Chinguetti"]
 
@@ -36,7 +36,6 @@ def validate_id(value):
 
     Returns (bool, str).
     """
-    h
     raise NotImplementedError("validate_id")
 
 
@@ -53,14 +52,15 @@ def validate_title(value):
 
 
 def validate_city(value):
-    """A city must be present and appear in KNOWN_CITIES.
-
-    Comparison is case-insensitive: "timbuktu" is acceptable.
-    "Kano" is not in our list, so it is rejected — and that is a real
-    decision with a cost. Write about it in your README.
-
-    Returns (bool, str).
-    """
+    s = ''
+    statement = True
+    KNOWN_CITIES2 = []
+    for i in range(0,len(KNOWN_CITIES)):
+        KNOWN_CITIES2.append(KNOWN_CITIES[i].lower());
+    if value.lower() not in KNOWN_CITIES2:
+        s = value + " " + "is not in our list, so it is rejected"
+        statement = False;
+    return statement,s
     raise NotImplementedError("validate_city")
 
 
