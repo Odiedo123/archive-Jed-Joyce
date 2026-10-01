@@ -19,6 +19,15 @@ FIELD_NAMES = ["id", "title", "city", "year", "condition"]
 
 
 def parse_line(line):
+    line = line.strip()
+    values = {}
+    s = ''
+    for i in range(0,len(line)):
+        if(line[i] != ','):
+            s += line[i]
+    
+        pass
+
     """Turn one CSV line into a dict with the five FIELD_NAMES as keys.
 
     Whitespace around the line (including the trailing newline) is stripped.
