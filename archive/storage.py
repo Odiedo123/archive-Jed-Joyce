@@ -22,11 +22,22 @@ def parse_line(line):
     line = line.strip()
     values = {}
     s = ''
+    count = 0
     for i in range(0,len(line)):
         if(line[i] != ','):
             s += line[i]
-    
-        pass
+        else:
+            values[FIELD_NAMES[count]] = s
+            s = ''
+            count += 1
+        if i == len(line) - 1:
+            values[FIELD_NAMES[count]] = s
+            count += 1
+
+    if count != 5:
+        raise MalformedRecordError
+
+    return values
 
     """Turn one CSV line into a dict with the five FIELD_NAMES as keys.
 
