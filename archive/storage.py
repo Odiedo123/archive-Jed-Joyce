@@ -38,22 +38,7 @@ def parse_line(line):
         raise MalformedRecordError
 
     return values
-
-    """Turn one CSV line into a dict with the five FIELD_NAMES as keys.
-
-    Whitespace around the line (including the trailing newline) is stripped.
-    Field values are stripped too.
-
-    If the line does not split into exactly 5 fields, raise
-    MalformedRecordError. Do not guess, do not pad with blanks — a line with
-    four fields is not a record with an empty one, it is a broken line, and
-    the difference matters when you report it to whoever typed it.
-
-    Returns dict.
-    """
     raise NotImplementedError("parse_line")
-
-
 def load_archive(path):
     """Read the file at `path` and return (valid_records, rejected_lines).
 
