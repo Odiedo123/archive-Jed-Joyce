@@ -13,6 +13,12 @@ Note in your README which one would be instant with a dictionary instead.
 
 
 def count_before(records, year):
+    count = 0
+    for record in records:
+        if int(record["year"]) < year:
+            count += 1
+    return count
+
     """How many manuscripts were written strictly BEFORE `year`?
 
     `year` is an int. Record years may be strings from the file — convert.
@@ -23,6 +29,13 @@ def count_before(records, year):
 
 
 def find_by_city(records, city):
+    matches = []
+    target_city = city.lower()  
+    for record in records:
+        record_city = record.get("city", "")
+        if record_city and record_city.lower() == target_city:
+            matches.append(record)
+    return matches
     """Every record whose city matches `city`, case-insensitively.
 
     Order is preserved: the records come back in the order they appear in
@@ -34,6 +47,16 @@ def find_by_city(records, city):
 
 
 def oldest(records):
+    if not records:
+        return None
+    oldest_record = records[0]
+    oldest_year = int(oldest_record["year"])
+    for record in records[1:]:
+        current_year = int(record["year"])
+        if current_year < oldest_year:   
+            oldest_year = current_year
+            oldest_record = record
+    return oldest_record
     """The record with the smallest year.
 
     An empty list returns None — not an error, not a crash. Deciding what
@@ -47,6 +70,14 @@ def oldest(records):
 
 
 def cities_summary(records):
+    summary = {}
+    for record in records:
+        city = record["city"]
+        if city in summary:
+            summary[city] += 1
+        else:
+            summary[city] = 1
+    return summary
     """How many manuscripts come from each city?
 
     Returns a dict mapping city name to count. A city with zero manuscripts

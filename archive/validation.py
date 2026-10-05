@@ -83,10 +83,7 @@ def validate_year(value):
 def validate_condition(value):
     if not isinstance(value, str):
         return (False, "a condition is either fragile, good or fair")
-        
-    valid_conditions = ("fragile", "good", "fair")
-    
-    if value.lower() in valid_conditions:
+    if value.lower() in VALID_CONDITIONS:
         return (True, "")
     else:
         return (False, "a condition is either fragile, good or fair")
