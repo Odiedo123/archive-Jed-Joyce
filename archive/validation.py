@@ -107,5 +107,3 @@ def validate_record(record):
 
     return issues
     raise NotImplementedError("validate_record")
-record = {"id" : "100", "title" : " " , "city" : "timbuktu", "year": "2000", "condition" : "good"}
-print(validate_record(record))
