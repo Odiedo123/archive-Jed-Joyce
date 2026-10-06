@@ -1,6 +1,6 @@
 # The Archive
 
-**Pair:** *(your two names)* **Repository:** *(link)*
+**Pair:** *Jed and Joyce* **Repository:** *https://github.com/Odiedo123/archive-Jed-Joyce*
 
 > This file is Part E of the assignment — **15 marks**. Replace every placeholder below. Delete the instruction lines in italics as you go. Marks come from the reasoning, not the length.
 
@@ -12,11 +12,11 @@
 
 | Field | Type | Example | If it is unknown, we… |
 | --- | --- | --- | --- |
-| id |  | `MS001` |  |
-| title |  |  |  |
-| city |  |  |  |
-| year |  |  |  |
-| condition |  |  |  |
+| id | string | `MS001` | Return an error |
+| title |string  | At Night All Blood is Black | Return an Error |
+| city | string | "Dodoma | Return an Error |
+| year | string | "1800" | Return an Error |
+| condition | string | "good" | Return an Error |
 
 ---
 
@@ -24,16 +24,17 @@
 
 | Field | Rule(s) | Rejects (example) |
 | --- | --- | --- |
-| id |  |  |
-| title |  |  |
-| city |  |  |
-| year |  |  |
-| condition |  |  |
+| id | Must start with "MS" followed by a 3 digit int not 0 | Ms000 |
+| title | Must be 3 characters once stripped | "  vf" |
+| city | Must be in the list of known cities | "nairobi" |
+| year | Contains integers only in the range of 1900 and 1100 | 1000 |
+| condition | Must be in the list of valid conditions | "subpar" |
 
 ### Who decided the year range?
 
 *The brief gave you 1100–1900. That was a decision someone made, and it has costs. 1900 excludes a modern copy of an old text. 1100 excludes anything earlier. State whether you accept these bounds or would change them, and say what your choice throws away. An undefended range scores 1 of the 4 marks.*
 
+To include more books we would change the lower bound of 1100 to 1000
 ---
 
 ## 3\. The `c.1590` decision *(3 marks)*
@@ -46,11 +47,11 @@
 - **(b)** Store the year as text, so anything can be recorded.
 - **(c)** Store `1590` plus a separate `approximate` flag.
 
-**Our choice:**
+**Our choice:(c)**
 
-**Why:**
+**Why: To allow approximate years of books to be included and stored**
 
-**What it costs us:**
+**What it costs us: It will add another table and space consumption**
 
 ---
 
@@ -60,17 +61,17 @@
 
 | Test data | Value | Expected | Actual | Pass? |
 | --- | --- | --- | --- | --- |
-| Normal | 1655 | valid |  |  |
-| Abnormal |  |  |  |  |
-| Extreme (low) | 1100 | valid |  |  |
-| Extreme (high) |  |  |  |  |
-| Boundary (below) | 1099 | invalid |  |  |
-| Boundary (above) |  |  |  |  |
+| Normal | 1655 | valid | valid | Yes |
+| Abnormal | "high" | not valid | not valid | No |
+| Extreme (low) | 1100 | valid | valid | Yes |
+| Extreme (high) | 1900 | valid | valid | Yes |
+| Boundary (below) | 1099 | invalid | invalid | No |
+| Boundary (above) | 1901 | invalid | invalid |  No|
 
 ### `_______________` *(one other field of your choice)*
 
 | Test data | Value | Expected | Actual | Pass? |
-| --- | --- | --- | --- | --- |
+| Empty | "" | not valid | not valid | No |
 
 ---
 
@@ -78,9 +79,11 @@
 
 *One paragraph each, written separately and signed. Do not write these together — the point is two honest accounts.*
 
-***(partner 1 name)*:** One thing my partner did that I will steal: One thing I would do differently next time:
+***(Joyce)*:** One thing my partner did that I will steal:(The way of writing the code using boolean instead of a lot of operations that takes more space) One thing I would do differently next time:(Code better)
 
-***(partner 2 name)*:** One thing my partner did that I will steal: One thing I would do differently next time:
+
+***(Jed)*:** One thing my partner did that I will steal: The efficient code writting with her using a lot of python functions i've never used before, allowing me to not only finish the project but learn through the experience
+ One thing I would do differently next time: Realize that pair programming is quicker and more efficient and communicating more
 
 ---
 
@@ -88,9 +91,9 @@
 
 *Required. See the integrity section of the brief.*
 
-- [ ] Both of us can explain every line in this repository.
+- [ Yes ] Both of us can explain every line in this repository.
 
-- [ ] AI assistants used for explanation only, not to generate our implementation or our tests.
+- [ Yes ] AI assistants used for explanation only, not to generate our implementation or our tests.
 
 **If you used an AI assistant, say what you asked and what you did with the answer:**
 
