@@ -91,14 +91,17 @@ def validate_condition(value):
 
 
 def validate_record(record):
-    """Validate a whole record dictionary.
+    issues = []
+    if validate_id(record["id"])[0] == False:
+        issues.append(validate_id(record["id"])[1])
+    if validate_title(record["title"])[0] == False:
+        issues.append(validate_title(record["title"])[1])
+    if validate_city(record("city"))[0] == False:
+        issues.append(validate_city(record["city"])[1])
+    if validate_year(record["year"])[0] == False:
+        issues.append(validate_year(record["year"])[1])
+    if validate_condition(record["condition"])[0] == False:
+        issues.append(validate_condition(record["condition"])[1])
 
-    record is a dict with the keys: id, title, city, year, condition.
-
-    Returns a LIST of reasons the record is invalid — one string per broken
-    rule, in this field order: id, title, city, year, condition.
-    An empty list means the record is valid.
-
-    Do not re-write the rules here. Call the five functions above.
-    """
+    return issues
     raise NotImplementedError("validate_record")
