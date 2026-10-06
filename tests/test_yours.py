@@ -78,6 +78,20 @@ def test_condition_case():
 #
 # TODO: write them here.
 
+#!Validate Year Tests
+
+def test_year_normal():
+    assert validate_year(1100)[0] is True
+
+def test_year_abnormal():
+    assert validate_year(2000000)[0] is False
+
+def test_year_extreme():
+    assert validate_year(1100) is True
+
+def test_year_boundary():
+    assert validate_year(1901) is False
+
 
 # ============================================================== your tests
 # Everything below is yours. Suggested coverage, in the order the marks are
@@ -92,3 +106,32 @@ def test_condition_case():
 #   load_archive         missing file, the clean file, the messy file
 #   save_archive         round trip: save then load gives back what you saved
 #   queries              empty list, ties, case-insensitive city
+
+
+#!Validate id_tests
+def test_id_format():
+    assert validate_id("001MS")[0] is False
+
+def test_id_length():
+    assert validate_id("MS00111")[0] is False
+
+def test_id_case():
+    assert validate_id("ms001")[0] is False
+
+def test_id_empty():
+    assert validate_id("")[0] is False
+
+#! Validate condition tests
+
+def test_condition_value():
+    assert validate_condition("fragile")[0] is True
+    assert validate_condition("good")[0] is True
+    assert validate_condition("fair")[0] is True
+
+def test_condition_uppercase():
+    assert validate_condition("fraAile")[0] is True
+    assert validate_condition("Good")[0] is True
+    assert validate_condition("FAIR")[0] is True
+
+def test_condition_invalid():
+    assert validate_condition("Mildly damaged") is False
