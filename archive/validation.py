@@ -27,7 +27,6 @@ VALID_CONDITIONS = ["fragile", "fair", "good"]
 MIN_YEAR = 1100
 MAX_YEAR = 1900
 
-
 def validate_id(value):
     """An ID is the letters 'MS' followed by exactly three digits.
 
@@ -37,6 +36,12 @@ def validate_id(value):
     Returns (bool, str).
     """
     raise NotImplementedError("validate_id")
+    if not isinstance(value, str) or len(value) != 5:
+        return (False, "not in range")
+    if value.startswith("MS") and value[2:].isdigit():
+        return (True, "")
+    else:
+        return (False, "not valid")
 
 
 def validate_title(value):
@@ -63,33 +68,26 @@ def validate_city(value):
     return statement,s
     raise NotImplementedError("validate_city")
 
-
-
-
 def validate_year(value):
-    """A year must be present, numeric, and between MIN_YEAR and MAX_YEAR
-    INCLUSIVE.
-
-    Valid:   "1655", "1100", "1900"
-    Invalid: "", "   ", "c.1590", "sixteen fifty", "1099", "1901", "2087"
-
-    Note that "2087" parses perfectly well as a number. It is still wrong.
-    That is the whole point of a range check.
-
-    Returns (bool, str).
-    """
-    raise NotImplementedError("validate_year")
+    if not isinstance(value, str) or len(value) != 4 or not value.isdigit():
+        if isinstance(value, str) and not value.isdigit():
+            return (False, "year should be integers")
+        return (False, "invalid year")
+    year = int(value)
+    if 1100 <= year <= 1900:
+        return (True, "")
+    else:
+        return (False, "not in range")
 
 
 def validate_condition(value):
-    """A condition must be one of VALID_CONDITIONS, case-insensitively.
+    if not isinstance(value, str):
+        return (False, "a condition is either fragile, good or fair")
+    if value.lower() in VALID_CONDITIONS:
+        return (True, "")
+    else:
+        return (False, "a condition is either fragile, good or fair")
 
-    Valid:   "fragile", "GOOD", "Fair"
-    Invalid: "excellent", "", "ok"
-
-    Returns (bool, str).
-    """
-    raise NotImplementedError("validate_condition")
 
 
 def validate_record(record):
